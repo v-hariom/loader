@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagtaste</title>
+
+    <style>
+        body{
+            text-align: center;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+        }
+        .logo-wrapper{
+            position: relative;
+            width: fit-content;
+            height: 40px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            background-color: #fff;
+            font-size: 2rem;
+            padding: 10px;
+            letter-spacing: 20px;
+            margin-bottom: 20px;
+        }
+        .logo-wrapper span{
+            color: #fff;
+            mix-blend-mode: difference;
+            text-transform: uppercase;
+            user-select: none;
+        }
+        .logo-wrapper::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left:0;
+            display: block;
+            height: 100%;
+            width: 80px;
+            background-color: #000;
+            animation: loader 3s linear infinite;
+        }
+
+        @keyframes loader {
+            0%{
+                left: 0;
+            }
+            50%{
+                left: calc(100% - 80px);
+            }
+            100%{
+                left: 0;
+            }            
+        }
+
+        /* logo-wrapper-2 */
+
+        .logo-wrapper-2{
+            position: relative;
+            padding: 10px;
+            background-color: transparent;
+            width: 200px;
+            overflow: hidden;
+            margin: auto;
+            padding-top: 25px;
+        }
+        
+        .logo-wrapper-2 img{
+            width: 100%;
+        }
+        .logo-wrapper-2::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            right:0;
+            display: block;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(255, 255, 255,.9);
+            backdrop-filter: blur(1px);
+            animation: loader2 2s infinite alternate;
+        }
+
+        @keyframes loader2 {
+            0%{
+                right: 0;
+            }
+            100%{
+                right: -100%;
+            }            
+        }
+
+        .btn{
+            line-height: 1;
+            padding: 5px 15px;
+            font-weight: 400;
+            color: #000;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #d1d1d1;
+            border: 1px solid transparent;
+            font-size: 16px;
+            line-height: 1.2;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .btn.btn-primary{
+            background-color: #FF1654;
+            border-color: #FF1654;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .btn:hover{
+            background-color: rgba(209, 209, 209,.8);
+        }
+        .btn.btn-primary:hover{
+            background-color: rgba(255, 22, 84,.8);
+        }
+
+        .btn-wrapper{
+            margin-top: 50px;
+        }
+        /* alert-box */
+        .alert-box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: -100%;
+            visibility: hidden;
+            opacity: 0;
+            left: 0;
+            pointer-events: none;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        .alert-box.active{
+            top: 0;
+            visibility: visible;
+            opacity: 1;
+            pointer-events: initial;
+        }
+        .alert-box__inner{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #fff;
+            width: 250px;
+            padding: 20px 10px;
+            border-radius: 10px;
+            gap: 10px;
+            transform: translateY(-15px);
+           
+            transition: all .4s ;
+        }
+        .alert-box.active .alert-box__inner{
+            transform: translateY(10px);
+        }
+        .alert-box__action{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Tagtaste Logo Loading Animation</h1>
+        <div class="logo-wrapper">
+            <span>Tagtaste</span>
+        </div>
+
+
+        <div class="logo-wrapper-2">
+            <img src="logo.svg" alt="">
+        </div>
+
+        <div class="btn-wrapper">
+            <button class="btn btn-primary open-alert-btn">Open Alert Box</button>
+        </div>
+
+        <div class="alert-box">
+            <div class="alert-box__inner">
+                <div class="alert-box__content">
+                    <h3>Are You Sure ?</h3>
+                </div>
+                <div class="alert-box__action">
+                    <button class="btn btn-primary">Delete</button>
+                    <button class="btn close-alert-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const alertBox = document.querySelector('.alert-box');
+
+        const openAlertBtn = document.querySelector('.open-alert-btn');
+        const closeAlertBtn = document.querySelector('.close-alert-btn');
+
+        openAlertBtn.addEventListener('click',function(){
+            alertBox.classList.add('active')
+        });
+
+        closeAlertBtn.addEventListener('click',function(){
+            alertBox.classList.remove('active')
+        });
+
+    </script>
+</body>
+</html>
